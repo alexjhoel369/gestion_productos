@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Productos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="info-box">
+            <h2>SEGUNDO PARCIAL TEM-742</h2>
+            <p><strong>Nombre:</strong> Jhoel Alejandro Salcedo Quispe</p>
+            <p><strong>C.I:</strong> 10084643</p>
+        </div>
+
+        <h1>Gestion de Productos</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripcion</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Categoría</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.id }}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.cantidad }}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td>{{ producto.categoria }}</td>
+                    <td>
+                        <a href="/editar/{{ producto.id }}" class="btn btn-primary">Editar</a>
+                        <form action="/eliminar/{{ producto.id }}" method="POST" style="display:inline;">
+                            <button class="btn btn-danger" type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/agregar" class="btn">Nuevo Producto</a>
+    </div>
+</body>
+</html>
